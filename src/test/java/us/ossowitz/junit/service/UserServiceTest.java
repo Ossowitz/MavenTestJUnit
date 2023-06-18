@@ -5,6 +5,7 @@ import us.ossowitz.junit.dto.User;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@TestInstance(TestInstance.Lifecycle.PER_METHOD)
 public class UserServiceTest {
     private UserService userService;
 
