@@ -5,12 +5,12 @@ import us.ossowitz.junit.dto.User;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@TestInstance(TestInstance.Lifecycle.PER_METHOD)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class UserServiceTest {
     private UserService userService;
 
     @BeforeAll
-    public static void init() {
+    public void init() {
         System.out.println("Before all: ");
     }
 
@@ -44,7 +44,7 @@ public class UserServiceTest {
     }
 
     @AfterAll
-    public static void closeConnectionPool() {
+    public void closeConnectionPool() {
         System.out.println("After all: ");
     }
 }
