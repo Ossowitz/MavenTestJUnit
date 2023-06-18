@@ -1,14 +1,17 @@
 package us.ossowitz.junit.service;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import us.ossowitz.junit.dto.User;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class UserServiceTest {
     private UserService userService;
+
+    @BeforeAll
+    public static void init() {
+        System.out.println("Before all: ");
+    }
 
     @BeforeEach
     public void prepare() {
@@ -37,5 +40,10 @@ public class UserServiceTest {
     @AfterEach
     public void deleteDataFromDatabase() {
         System.out.println("After each: " + this);
+    }
+
+    @AfterAll
+    public static void closeConnectionPool() {
+        System.out.println("After all: ");
     }
 }
