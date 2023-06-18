@@ -11,7 +11,7 @@ public class UserServiceTest {
 
     @BeforeAll
     public void init() {
-        System.out.println("Before all: ");
+        System.out.println("Before all: " + this);
     }
 
     @BeforeEach
@@ -45,6 +45,6 @@ public class UserServiceTest {
 
     @AfterAll
     public void closeConnectionPool() {
-        System.out.println("After all: ");
+        System.out.println("After all: " + this);
     }
 }
