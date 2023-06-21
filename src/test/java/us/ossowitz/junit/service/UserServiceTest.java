@@ -3,7 +3,13 @@ package us.ossowitz.junit.service;
 import org.junit.jupiter.api.*;
 import us.ossowitz.junit.dto.User;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.Arrays;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class UserServiceTest {
@@ -46,5 +52,13 @@ public class UserServiceTest {
     @AfterAll
     public void closeConnectionPool() {
         System.out.println("After all: " + this);
+    }
+
+    @Test
+    public void listConnection() {
+        List<Integer> expected = Arrays.asList(1, 2, 3);
+        List<Integer> actual = Arrays.asList(3, 2, 1);
+
+
     }
 }
