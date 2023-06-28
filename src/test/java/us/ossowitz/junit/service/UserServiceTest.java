@@ -4,9 +4,11 @@ import org.junit.jupiter.api.*;
 import us.ossowitz.junit.dto.User;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class UserServiceTest {
@@ -40,7 +42,9 @@ public class UserServiceTest {
         userService.add(PETR);
 
         List<User> users = userService.getAll();
-        assertEquals(2, users.size());
+
+//        assertEquals(2, users.size());
+        assertThat(users).hasSize(2);
     }
 
     @Test
@@ -49,8 +53,23 @@ public class UserServiceTest {
 
         Optional<User> maybeUser = userService.login(IVAN.getUsername(), IVAN.getPassword());
 
-        assertTrue(maybeUser.isPresent());
-        maybeUser.ifPresent(user -> assertEquals(IVAN, user));
+//        assertTrue(maybeUser.isPresent());
+        assertThat(maybeUser).isPresent();
+
+//        maybeUser.ifPresent(user -> assertEquals(IVAN, user));
+        maybeUser.ifPresent(user -> assertThat(user).isEqualTo(IVAN));
+    }
+
+    @Test
+    void usersConvertedToMapById() {
+        userService.add(IVAN, PETR);
+
+        Map<Integer, User> users = userService.getAllConvertedById();
+
+        assertAll(
+                () -> assertThat(users).containsKeys(IVAN.getId(), PETR.getId()),
+                () ->assertThat(users).containsValues(IVAN, PETR)
+        );
     }
 
     @Test
