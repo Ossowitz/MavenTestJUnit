@@ -13,8 +13,7 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.collection.IsEmptyCollection.*;
 import static org.hamcrest.collection.IsMapContaining.*;
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class UserServiceTest {
 
@@ -38,8 +37,8 @@ public class UserServiceTest {
         System.out.println("Test 1: " + this);
         List<User> users = userService.getAll();
 
-//        MatcherAssert.assertThat(users, empty());
-        assertTrue(users.isEmpty(), () -> "User list should be empty");
+        MatcherAssert.assertThat(users, empty());
+//        assertTrue(users.isEmpty(), () -> "User list should be empty");
     }
 
     @Test
@@ -50,8 +49,8 @@ public class UserServiceTest {
 
         List<User> users = userService.getAll();
 
-//        assertEquals(2, users.size());
-        assertThat(users).hasSize(2);
+        assertEquals(2, users.size());
+//        assertThat(users).hasSize(2);
     }
 
     @Test
